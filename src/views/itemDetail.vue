@@ -3,10 +3,10 @@
 <template>
   <div class="itemDetail">
     <navigation />
-    <div class="container" v-if="productLoading != true && product">
-    <p>{{product.item.name}}</p>
-    <p>{{product.item.quantity}}</p>
-    <p>{{product.item.price}}&euro;</p>
+    <div class="container" v-if="product">
+      <p>{{ product.item.name }}</p>
+      <p>quantity: {{ product.item.quantity }}</p>
+      <p>{{ product.item.price }}&euro;</p>
     </div>
   </div>
 </template>

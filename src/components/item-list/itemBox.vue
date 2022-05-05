@@ -23,12 +23,13 @@ a{
       />
       <p>{{ product.name }}</p>
       <p>price: {{ product.price }}&euro;</p>
+      <p>{{index}}</p>
     </div>
   </router-link>
 </template>
 <script>
 export default {
   name: "itemBox",
-  props: ["product"],
+  props: ["product", "index"],
 };
 </script>

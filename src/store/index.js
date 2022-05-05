@@ -1,18 +1,27 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
-import vuexPersist from 'vuex-persist'
+import VuexPersist from 'vuex-persist'
 
 Vue.use(Vuex)
+const vuexLocalStorage = new VuexPersist({
+  storage: window.localStorage,
+  reducer: state => ({
+    token: state.token,
+    kafka: state.kafka
+
+  })
+})
 const url = 'http://localhost:3000'
 export default new Vuex.Store({
   state: {
     products: undefined,
     product: undefined,
-    cart: [],
     productLoading: false,
     searchItemList: false,
-    nav: false
+    nav: false,
+    kafka: false,
+    token: undefined
   },
   getters: {
   },
@@ -23,15 +32,17 @@ export default new Vuex.Store({
     setProduct(state, product) {
       state.product = product
     },
-    addToCart(state, product) {
-    },
-    removeFromCart(state, product) {
+    setKafka(state, kafka) {
+      state.kafka = kafka
     },
     setProductLoading(state, productLoading) {
       state.productLoading = productLoading
     },
     setNav(state) {
       state.nav = !state.nav
+    },
+    setToken(state, token) {
+      state.token = token
     }
   },
 
@@ -61,8 +72,18 @@ export default new Vuex.Store({
         }, error => {
           console.log(error);
         })
+    },
+    setKafka({ commit }, kafka) {
+      commit('setKafka', kafka)
+    },
+    setToken({ commit }, token) {
+      commit('setToken', token)
+    },
+    setLoading({ commit }, loading) {
+      commit('setProductLoading', loading)
     }
   },
   modules: {
-  }
+  },
+  plugins: [vuexLocalStorage.plugin]
 })

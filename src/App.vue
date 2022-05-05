@@ -36,6 +36,34 @@ span {
 </style>
 <template>
   <div id="app">
-    <router-view/>
+    <router-view />
   </div>
 </template>
+<script>
+import axios from "axios";
+export default {
+  mounted() {
+    this.$store.dispatch("getProducts");
+    axios
+      .get("http://localhost:3000/kafka", {
+        headers: {
+          Authorization: "Bearer " + this.$store.state.token,
+        },
+      })
+      .then((response) => {
+        if (response.status === 200) {
+          this.$store.dispatch("setKafka", true);
+        } else {
+          this.$store.dispatch("setKafka", false);
+          this.$store.dispatch("setToken", undefined);
+        }
+        this.$store.dispatch("setLoading", false);
+      })
+      .catch((error) => {
+        this.$store.dispatch("setKafka", false);
+        this.$store.dispatch("setToken", undefined);
+        this.$store.dispatch("setLoading", false);
+      });
+  },
+};
+</script>

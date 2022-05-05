@@ -25,7 +25,7 @@
       <p>European students</p>
     </div>
     <div class="container" v-if="products">
-        <itemBox v-for="product in products.data" :key="product._id" :product="product"/>
+        <itemBox v-for="(product, index) in products" :key="product._id" :index="index" :product="product"/>
     </div>
   </div>
 </template>
@@ -42,9 +42,6 @@ export default {
       products(){
             return this.$store.state.products;
       }
-  },
-  mounted() {
-      this.$store.dispatch("getProducts");
-  },
+  }
 };
 </script>

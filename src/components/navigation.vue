@@ -37,6 +37,9 @@
     <router-link to="/"><div class="logo">EraShop</div></router-link>
     <div class="icons">
       <font-awesome-icon icon="fa-solid fa-magnifying-glass" />
+      <router-link :to="kafka ? '/account' : '/signIn'">
+      <font-awesome-icon icon="fa-solid fa-user" />
+      </router-link>
       <router-link to="/cart">
         <font-awesome-icon icon="fa-solid fa-cart-shopping" />
       </router-link>
@@ -47,5 +50,13 @@
 <script>
 export default {
   name: "navigation",
+  computed: {
+    kafka(){
+      return this.$store.state.kafka;
+    },
+    link(){
+      return this.$store.state.link;
+    }
+  },
 };
 </script>
