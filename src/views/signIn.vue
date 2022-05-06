@@ -1,16 +1,31 @@
 <style lang="scss" scoped>
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;500&display=swap');
 .signin{
     width: 100%;
     height: 100vh;
+    font-family: "Raleway", sans;
     .container{
         height: 92vh;
         display: flex;
         justify-content: center;
         align-items: center;
-        form{
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
+          form{
+              .main{
+                padding: 10vh 15vh 15vh 15vh;
+              }
+              border-radius: 6vh;
+              display: flex;
+              flex-direction: column;
+              gap: 10vh;
+              background-color: #FBFBFB;
+              h1{
+                text-align: center;
+                margin-bottom: 1.5vh;
+              }
+              p{
+                padding-top: 2vh;
+                padding-bottom: 2vh;
+              }
         }
     }
     .signedIn{
@@ -25,14 +40,19 @@
   <div class="signin">
     <navigation />
     <div class="container" v-if="kafka != true">
-      <form v-on:submit.prevent="login">
-        <label for="username"></label>
-        <input type="text" id="username" v-model="username" />
-        <label for="password"></label>
-        <input type="password" v-model="password" />
-        <p :style="{ color: color }">{{ message }}</p>
-        <input type="submit" value="přihlásit se" />
-      </form>
+        <form v-on:submit.prevent="login">
+          <div class="main">
+            <h1>Sign in</h1>
+            <p>Username/mail</p>
+            <label for="username" class="username"></label>
+            <input type="text" id="username" v-model="username" />
+            <p>Password</p>
+            <label for="password"></label>
+            <input type="password" v-model="password" />
+            <p :style="{ color: color }">{{ message }}</p>
+            <input  class="submit" type="submit" value="Login" />
+          </div>
+        </form>
     </div>
     <div class="signedIn" v-else>
     <p>You're already signed in!</p></div>
