@@ -10,8 +10,16 @@
         justify-content: center;
         align-items: center;
           form{
+              .input{
+                background-color: #F1F1F1;
+                border-style: none;
+                padding: 1vh;
+                border: 1px solid rgba(0, 0, 0, 0.10);
+                border-radius: .5vh;
+                width: 35vh;
+              }
               .main{
-                padding: 10vh 15vh 15vh 15vh;
+                padding: 10vh 15vh 10vh 15vh;
               }
               border-radius: 6vh;
               display: flex;
@@ -25,6 +33,17 @@
               p{
                 padding-top: 2vh;
                 padding-bottom: 2vh;
+              }
+              .flex-one{
+                display: flex;
+                justify-content: center;
+                .submit{
+                  background-color: rgba(232, 232, 232, 0.56);
+                  border-style: none;
+                  border: none;
+                  padding: 1.5vh 2vh;
+                  border-radius: 1.5vh;
+                }
               }
         }
     }
@@ -45,12 +64,14 @@
             <h1>Sign in</h1>
             <p>Username/mail</p>
             <label for="username" class="username"></label>
-            <input type="text" id="username" v-model="username" />
+            <input type="text" id="username" class="input" v-model="username" />
             <p>Password</p>
             <label for="password"></label>
-            <input type="password" v-model="password" />
+            <input type="password" class="input" v-model="password" />
             <p :style="{ color: color }">{{ message }}</p>
-            <input  class="submit" type="submit" value="Login" />
+            <div class="flex-one">
+              <input  class="submit" type="submit" value="Login" />
+            </div>
           </div>
         </form>
     </div>
