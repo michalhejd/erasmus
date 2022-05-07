@@ -52,7 +52,7 @@ export default new Vuex.Store({
       await axios.get(`${url}/stock/data`)
         .then(response => {
           commit('setProducts', response.data)
-          commit('setProductLoading', false)
+          setTimeout(() => { commit('setProductLoading', false)}, 300);
         }
         )
     },
@@ -67,7 +67,7 @@ export default new Vuex.Store({
           }
           else {
             document.title = response.data.name
-            setTimeout(() => { commit('setProductLoading', false)}, 100);
+            setTimeout(() => { commit('setProductLoading', false)}, 300);
           }
         }, error => {
           console.log(error);

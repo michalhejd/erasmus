@@ -22,8 +22,8 @@ a{
         alt="no img"
       />
       <p>{{ product.name }}</p>
-      <p>price: {{ product.price }}&euro;</p>
-      <p>{{index}}</p>
+      <p>{{ product.price }}&euro;</p>
+      <p v-if="product.quantity == 0" style="color: red">Out of stock</p>
     </div>
   </router-link>
 </template>
