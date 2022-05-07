@@ -1,30 +1,36 @@
 <style lang="scss" scoped>
-.account-info {
-  display: flex;
-  flex-direction: column;
-  height: 50vh;
-  justify-content: center;
-  align-items: center;
-  .account-box {
-    p{
-      font-size: 1rem;
-      padding-bottom: 5%;
-    }
+.account {
+  width: 100vw;
+  height: 100vh;
+  .account-info {
     display: flex;
     flex-direction: column;
-    background-color: rgb(237, 237, 237);
-    border-radius: 10px;
-    margin-top: 3%;
-    width: 30%;
-    padding: 50px;
-    div {
+    justify-content: center;
+    align-items: center;
+    .account-box {
+      p {
+        font-size: 1rem;
+        padding-bottom: 5%;
+      }
+      .account-parametr-stats {
+        margin-bottom: 30px;
+      }
       display: flex;
       flex-direction: column;
-      button {
-        margin-top: 30px;
-        background-color: transparent;
-        border: none;
-        cursor: pointer;
+      background-color: rgb(237, 237, 237);
+      border-radius: 10px;
+      margin-top: 3%;
+      width: 30%;
+      padding: 50px;
+      div {
+        display: flex;
+        flex-direction: column;
+        button {
+          margin-top: 30px;
+          background-color: transparent;
+          border: none;
+          cursor: pointer;
+        }
       }
     }
   }
@@ -38,11 +44,14 @@
         class="account-info"
         v-if="this.userLoading != true && this.user != undefined"
       >
-          <h1>My Account</h1>
+        <h1>My Account</h1>
         <div class="account-box">
-          <p>Username: {{ this.user.username }}</p>
-          <p>Email: {{ this.user.email }}</p>
-          <p>Ballance: {{ this.user.ballance }} $Era</p>
+          <p>Username:</p>
+          <p class="account-parametr-stats">{{ this.user.username }}</p>
+          <p>Email:</p>
+          <p class="account-parametr-stats">{{ this.user.email }}</p>
+          <p>Ballance:</p>
+          <p class="account-parametr-stats">{{ this.user.ballance }} $Era</p>
           <div>
             <button @click="signOut()">Sign out</button>
           </div>
