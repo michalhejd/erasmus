@@ -46,7 +46,7 @@ export default {
     },
   },
   mounted() {
-    this.userLoading = true;
+    
     axios
       .get("http://localhost:3000/user/data", {
         headers: {
