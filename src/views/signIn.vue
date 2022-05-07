@@ -3,12 +3,12 @@
 .signin {
   width: 100%;
   height: 100vh;
-  font-family: "Raleway", sans;
   .container {
     height: 92vh;
     display: flex;
     justify-content: center;
     align-items: center;
+     font-family: "Raleway", sans;
     form {
       .input {
         background-color: #f1f1f1;

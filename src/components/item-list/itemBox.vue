@@ -8,6 +8,8 @@
   color: black;
   img {
     width: 100%;
+    max-width: 150px;
+    max-height: 150px;
   }
 }
 a{
@@ -17,10 +19,7 @@ a{
 <template>
   <router-link :to="{name: 'itemDetail', params: {id: product.name}}" style="text-decoration: none">
     <div class="itemBox">
-      <img
-        src="https://img.kytary.com/eshop_cz/velky_v2/na/635418107771000000/b2283488/64214570/yamaha-ez-220.jpg"
-        alt="no img"
-      />
+      <img :src="`http://localhost:3000/images/${product.name}/0.jpg`" />
       <p>{{ product.name }}</p>
       <p>{{ product.price }}&euro;</p>
       <p v-if="product.quantity == 0" style="color: red">Out of stock</p>
