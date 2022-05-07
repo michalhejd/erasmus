@@ -132,7 +132,7 @@ export default {
           console.log(error);
           this.message = error.response.data;
           this.$store.commit("setKafka", false);
-          this.dispatch("setToken", undefined);
+          this.$store.commit("setToken", undefined);
         });
     },
   },
