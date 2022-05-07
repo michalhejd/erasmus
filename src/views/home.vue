@@ -21,6 +21,10 @@ button {
 }
 article {
   padding: 0 150px;
+  p{
+    padding-top: 5%;
+    text-align: justify;
+  }
   h2 {
     font-weight: 600;
   }
@@ -33,20 +37,17 @@ article {
 <template>
   <div class="home">
     <navigation />
+    <article>
+      <h2>Homemade European instruments by EU students</h2>
+      <p>
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perferendis error voluptatem vitae! Maxime pariatur architecto saepe obcaecati dolore molestias voluptate porro voluptas error est, nesciunt sapiente aut in corrupti officiis? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officiis mollitia sunt nihil. Libero, ullam at pariatur illum quia cumque quis eligendi veniam molestiae eveniet! Dolor eum modi sed ratione ipsa? Lorem ipsum dolor sit amet consectetur, adipisicing elit. Delectus ipsa porro incidunt quisquam repellat, repellendus quam, architecto provident similique assumenda, laudantium ipsum libero quibusdam omnis adipisci obcaecati nostrum nisi aut.
+      </p>
+    </article>
     <div class="wrap">
       <router-link to="/products">
         <button>More</button>
       </router-link>
     </div>
-    <article>
-      <h2>Homemade European instruments by EU students</h2>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde,
-        perferendis et enim aut alias saepe? Ullam, eum? Libero voluptates
-        facilis officia minus voluptatem ad maxime alias eligendi expedita,
-        repudiandae nisi!
-      </p>
-    </article>
   </div>
 </template>
 
