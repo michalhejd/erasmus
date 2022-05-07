@@ -13,14 +13,23 @@
 button {
   width: 150px;
   height: 50px;
-  background-color: #f5f5f5;
+  background-color: #ee6c4d;
   border-radius: 100px;
   border: 0;
   outline: 0;
   cursor: pointer;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 150px;
+}
+.flex-two{
+  justify-content: center;
+  display: flex;
 }
 article {
   padding: 0 150px;
+  max-width: 750px;
+  line-height: 25px;
   p{
     padding-top: 5%;
     text-align: center;
@@ -69,17 +78,19 @@ article {
 
       </div>
     </div>
-    <article>
-      <h2>
-        Welcome to EraShop!
-      </h2>
-      <!--<h3>
-        Homemade European instruments by EU students
-      </h3> -->
-      <p>
-        Internet eshop made by European students during the "Erasmus+ Musical Instruments Start-Up" project. You can expect nothing but musical instruments of all kinds here, and of course, every single one of them is handmade and created by one of the teams of students.
-      </p>
-    </article>
+    <div class="flex-two">
+      <article>
+        <h2>
+          Welcome to EraShop!
+        </h2>
+        <!--<h3>
+          Homemade European instruments by EU students
+        </h3> -->
+        <p>
+          <strong>Internet eshop made by European students</strong> during the "Erasmus+ Musical Instruments Start-Up" project. You can expect nothing but <strong>musical instruments</strong> of all kinds here, and of course, every single one of them is handmade and created by one of the teams of students. The teams are made up of multiple students from <b> Chechnya, Germoney, Baguette Land and Lazy monarchy</b>, each with its own different role in the whole project.
+        </p>
+      </article>
+    </div>
     <div class="wrap">
       <router-link to="/products">
         <button>More</button>
