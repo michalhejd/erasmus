@@ -23,24 +23,61 @@ article {
   padding: 0 150px;
   p{
     padding-top: 5%;
-    text-align: justify;
+    text-align: center;
   }
   h2 {
     font-weight: 600;
+  }
+  h3 {
+    padding-top: 2.5%;
+    font-weight: 500;
   }
   text-align: center;
 }
 .carousel{
   padding: 0 300px;
 }
+.flex{
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  .center-image{
+    width: 100vh;
+    height: 50vh;
+    background-color: black;
+    margin-left: 5vh;
+    margin-right: 5vh;
+  }
+  .side-image{
+    width: 75vh;
+    height: 40vh;
+    background-color: black;
+  }
+}
 </style>
 <template>
   <div class="home">
     <navigation />
+    <div class="flex">
+      <div class="side-image">
+
+      </div>
+      <div class="center-image">
+
+      </div>
+      <div class="side-image">
+
+      </div>
+    </div>
     <article>
-      <h2>Homemade European instruments by EU students</h2>
+      <h2>
+        Welcome to EraShop!
+      </h2>
+      <!--<h3>
+        Homemade European instruments by EU students
+      </h3> -->
       <p>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perferendis error voluptatem vitae! Maxime pariatur architecto saepe obcaecati dolore molestias voluptate porro voluptas error est, nesciunt sapiente aut in corrupti officiis? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officiis mollitia sunt nihil. Libero, ullam at pariatur illum quia cumque quis eligendi veniam molestiae eveniet! Dolor eum modi sed ratione ipsa? Lorem ipsum dolor sit amet consectetur, adipisicing elit. Delectus ipsa porro incidunt quisquam repellat, repellendus quam, architecto provident similique assumenda, laudantium ipsum libero quibusdam omnis adipisci obcaecati nostrum nisi aut.
+        Internet eshop made by European students during the "Erasmus+ Musical Instruments Start-Up" project. You can expect nothing but musical instruments of all kinds here, and of course, every single one of them is handmade and created by one of the teams of students.
       </p>
     </article>
     <div class="wrap">
