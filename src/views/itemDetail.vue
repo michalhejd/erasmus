@@ -6,6 +6,7 @@
   flex-direction: column;
   .container {
     display: flex;
+    height: 100%;
     .product {
       display: flex;
       width: 60%;
@@ -15,13 +16,30 @@
       flex-direction: column;
       width: 40%;
       padding: 50px;
-      .price, .description, .material, .origin{
+      .price,
+      .description,
+      .material,
+      .origin {
         margin-top: 30px;
         font-size: 1.3em;
       }
-      .description-data{
+      .description-data {
         margin-top: 30px;
         text-align: justify;
+      }
+      .button-box {
+        display: flex;
+        height: 100%;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        button {
+          margin-top: -100px;
+          border: none;
+          height: 15%;
+          width: 25%;
+          border-radius: 30px;
+        }
       }
     }
   }
@@ -39,15 +57,23 @@
       </div>
       <div class="product-stats">
         <h1>{{ product.name }}</h1>
-        <p class="price">Price: <strong>${{ product.price }}</strong></p>
+        <p class="price">
+          Price: <strong>${{ product.price }}</strong>
+        </p>
         <p class="description">Description:</p>
-        <p class="description-data"> {{ product.description }}</p>
-        <p class="material">Material: <strong>{{ product.material }}</strong></p>
-        <p class="origin">Country of origin: <strong>{{ product.origin }}</strong></p>
+        <p class="description-data">{{ product.description }}</p>
+        <p class="material">
+          Material: <strong>{{ product.material }}</strong>
+        </p>
+        <p class="origin">
+          Country of origin: <strong>{{ product.origin }}</strong>
+        </p>
         <p v-if="product.quantity == 0" style="color: red">Out of stock</p>
-        <button @click="addToCart()" :disabled="product.quantity == 0">
-          Add to cart
-        </button>
+        <div class="button-box">
+          <button @click="addToCart()" :disabled="product.quantity == 0">
+            Add to cart
+          </button>
+        </div>
       </div>
     </div>
     <loader v-else />
