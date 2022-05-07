@@ -4,9 +4,9 @@
   <div class="itemDetail">
     <navigation />
     <div class="container" v-if="product">
-      <p>{{ product.item.name }}</p>
-      <p>quantity: {{ product.item.quantity }}</p>
-      <p>{{ product.item.price }}&euro;</p>
+      <p>{{ product.name }}</p>
+      <p>quantity: {{ product.quantity }}</p>
+      <p>{{ product.price }}&euro;</p>
     </div>
   </div>
 </template>
