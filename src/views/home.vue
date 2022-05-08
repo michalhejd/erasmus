@@ -105,7 +105,7 @@ article {
           Homemade European instruments by EU students
         </h3> -->
         <p>
-          <strong>Internet eshop made by European students</strong> during the "Erasmus+ Musical Instruments Start-Up" project. You can expect nothing but <strong>musical instruments</strong> of all kinds here, and of course, every single one of them is handmade and created by one of the teams of students. The teams are made up of multiple students from <b> Chechnya, Germoney, Baguette Land and Lazy monarchy</b>, each with its own different role in the whole project.
+          <strong>Internet eshop made by European students</strong> during the "Erasmus+ Musical Instruments Start-Up" project. You can expect nothing but <strong>musical instruments</strong> of all kinds here, and of course, every single one of them is handmade and created by one of the teams of students. The teams are made up of multiple students from <b>Czech Republic, Germany, France and Spain</b>, each with its own different role in the whole project.
         </p>
       </article>
     </div>
