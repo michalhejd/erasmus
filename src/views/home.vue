@@ -63,6 +63,24 @@ article {
     background-color: black;
   }
 }
+
+@media(max-width: 700px){
+  article{
+    padding: 0%
+  }
+  .flex{
+    flex-direction: column;
+    .center-image{
+      margin-top: 5vh;
+      margin-left: 0vh;
+      margin-right: 0vh;
+    }
+    .side-image{
+      margin-top: 5vh;
+      align-self: center;
+    }
+  }
+}
 </style>
 <template>
   <div class="home">
