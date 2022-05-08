@@ -6,20 +6,65 @@
 .shopHere {
   display: flex;
 }
+.container {
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  h1{
+    margin-bottom: 3%;
+  }
+  .cartBox {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    height: 60%;
+    background-color: #fbfbfb;
+    border-radius: 10px;
+    .cartProduct {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 5%;
+      .line {
+        width: 2px;
+        height: 100%;
+        background-color: #999999;
+        margin-right: 10%;
+        margin-left: 10%;
+      }
+      button {
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        margin-left: 5%;
+        border: none;
+        background-color: #fbfbfb;
+      }
+    }
+  }
+}
 </style>
 <template>
   <div class="cart">
     <navigation />
-    <div class="container" v-if="this.cart != undefined">
-      <template v-for="(product, index) in this.cart">
-        <div class="cartProduct" :key="index">
-          <p>{{ product.item }}</p>
-          <p>{{ product.price }}&euro;</p>
-          <p>{{ product.quantity }}</p>
-          <button @click="removeItem(product.item)"></button>
-        </div>
-      </template>
-      <button @click="removeAll()"></button>
+    <div class="container" v-if="this.cart != []">
+    <h1>Cart</h1>
+      <div class="cartBox">
+        <template v-for="(product, index) in this.cart">
+          <div class="cartProduct" :key="index">
+            <p>{{ product.name }}</p>
+            <div class="line"></div>
+            <p>{{ product.quantity }}</p>
+            <div class="line"></div>
+            <p>{{ product.price }}&euro;</p>
+            <button @click="removeItem(product.name)">
+              <font-awesome-icon icon="fa-solid fa-xmark" />
+            </button>
+          </div>
+        </template>
+      </div>
     </div>
     <div class="empty" v-else>
       <p>Your cart is empty!</p>
@@ -57,6 +102,7 @@ export default {
         if (response.status === 200) {
           this.cart = response.data;
           this.cartLoading = false;
+          console.log(this.cart);
         }
       })
       .catch((error) => {
@@ -66,6 +112,7 @@ export default {
   methods: {
     removeItem(product) {
       this.$store.dispatch("setLoading", true);
+      console.log(product);
       axios
         .post(
           "http://localhost:3000/user/cart/remove",
@@ -81,26 +128,6 @@ export default {
         .then((response) => {
           if (response.status === 200) {
             this.$store.dispatch("setLoading", false);
-            this.$store.dispatch("setCart", response.data);
-          }
-        })
-        .catch((error) => {
-          this.$store.dispatch("setLoading", false);
-          this.cartError = error.response.data;
-        });
-    },
-    removeAll() {
-      this.$store.dispatch("setLoading", true);
-      axios
-        .post("/user/cart/removeall", {
-          headers: {
-            Authorization: `Bearer ${this.$store.state.token}`,
-          },
-        })
-        .then((response) => {
-          if (response.status === 200) {
-            this.$store.dispatch("setLoading", false);
-            this.$store.dispatch("setCart", response.data);
           }
         })
         .catch((error) => {

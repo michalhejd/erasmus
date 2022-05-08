@@ -10,7 +10,8 @@ import {faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons'
 import {faBarsStaggered} from '@fortawesome/free-solid-svg-icons'
 import {faCartShopping} from '@fortawesome/free-solid-svg-icons'
 import {faUser} from '@fortawesome/free-solid-svg-icons'
-library.add(faMagnifyingGlass, faBarsStaggered, faCartShopping, faUser)
+import {faXmark} from '@fortawesome/free-solid-svg-icons'
+library.add(faMagnifyingGlass, faBarsStaggered, faCartShopping, faUser, faXmark)
 
 /* add font awesome icon component */
 Vue.component('font-awesome-icon', FontAwesomeIcon)
