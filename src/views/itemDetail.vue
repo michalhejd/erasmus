@@ -48,7 +48,7 @@
 <template>
   <div class="itemDetail">
     <navigation />
-    <div class="container" v-if="product && productLoading != true">
+    <div class="container" v-if="product && loading != true">
       <div class="product">
         <img
           src="https://d1aeri3ty3izns.cloudfront.net/media/23/235459/600/preview_4.jpg"
@@ -104,12 +104,11 @@ export default {
     product() {
       return this.$store.state.product;
     },
-    productLoading() {
-      return this.$store.state.productLoading;
+    loading() {
+      return this.$store.state.loading;
     },
   },
   mounted() {
-    this.$store.dispatch("setLoading", true);
     this.$store.dispatch("getProduct", this.$route.params.id);
   },
 };

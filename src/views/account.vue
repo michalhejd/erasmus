@@ -63,16 +63,19 @@
       >
         <p>{{ this.userError }}</p>
       </div>
+      <loader v-else/>
     </div>
   </div>
 </template>
 <script>
 import axios from "axios";
 import navigation from "@/components/navigation.vue";
+import loader from "@/components/loader.vue";
 export default {
   name: "account",
   components: {
     navigation,
+    loader
   },
   data() {
     return {
@@ -89,6 +92,7 @@ export default {
     },
   },
   mounted() {
+    this.$store.dispatch("setLoading", true);
     axios
       .get("http://localhost:3000/user/data", {
         headers: {
@@ -98,13 +102,14 @@ export default {
       .then((response) => {
         if (response.status === 200) {
           this.user = response.data;
-          this.userLoading = false;
+          this.$store.dispatch("setLoading", false);
+
           console.log(response.data);
         }
       })
       .catch((error) => {
         this.userError = error.response.data;
-        this.userLoading = false;
+        this.$store.dispatch("setLoading", false);
       });
   },
 };

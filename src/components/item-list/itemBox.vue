@@ -19,7 +19,9 @@ a{
 <template>
   <router-link :to="{name: 'itemDetail', params: {id: product.name}}" style="text-decoration: none">
     <div class="itemBox">
-      <img :src="`http://localhost:3000/images/${product.name}/0.jpg`" />
+    <div class="img">
+    <img :src="`http://localhost:3000/images/${product.name}/0.jpg`"/>
+    </div>
       <p>{{ product.name }}</p>
       <p>{{ product.price }}&euro;</p>
       <p v-if="product.quantity == 0" style="color: red">Out of stock</p>

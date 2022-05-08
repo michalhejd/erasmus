@@ -16,12 +16,6 @@
     grid-template-columns: repeat(5, 1fr);
     column-gap: 30px;
 }
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .2s;
-}
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-  opacity: 0;
-}
 </style>
 <template>
   <div class="products">
@@ -30,14 +24,12 @@
       <h2>Musical Instruments</h2>
       <p>European students</p>
     </div>
-    <transition name="fade">
-     <div class="container" v-if="products && productLoading != true">
+     <div class="container" v-if="products && loading != true">
     <template v-for="(product, index) in products">
  <itemBox :key="product._id" :index="index" :product="product"/>
     </template>
     </div>
       <loader v-else/>
-    </transition>
    
   </div>
 </template>
@@ -56,8 +48,8 @@ export default {
       products(){
             return this.$store.state.products;
       },
-      productLoading(){
-            return this.$store.state.productLoading;
+      loading(){
+            return this.$store.state.loading;
       }
   }
 };

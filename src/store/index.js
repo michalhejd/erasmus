@@ -17,7 +17,7 @@ export default new Vuex.Store({
   state: {
     products: undefined,
     product: undefined,
-    productLoading: false,
+    loading: false,
     searchItemList: false,
     nav: false,
     kafka: false,
@@ -52,7 +52,7 @@ export default new Vuex.Store({
       await axios.get(`${url}/stock/data`)
         .then(response => {
           commit('setProducts', response.data)
-          setTimeout(() => { commit('setProductLoading', false)}, 300);
+          setTimeout(() => { commit('setProductLoading', false)}, 500);
         }
         )
     },
@@ -67,7 +67,7 @@ export default new Vuex.Store({
           }
           else {
             document.title = response.data.name
-            setTimeout(() => { commit('setProductLoading', false)}, 300);
+            setTimeout(() => { commit('setProductLoading', false)}, 500);
           }
         }, error => {
           console.log(error);
