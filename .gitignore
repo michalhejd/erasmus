@@ -1,17 +1,24 @@
 .DS_Store
 node_modules
 package-lock.json
+/dist
+dist
 
 
 # local env files
 .env.local
 .env.*.local
 
+/dist
+
 # Log files
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
+
+/dist
+dist
 
 # Editor directories and files
 .idea
@@ -22,3 +29,7 @@ pnpm-debug.log*
 *.sln
 *.sw?
 /dist
+dist
+
+/dist
+dist
