@@ -94,7 +94,7 @@ export default {
   mounted() {
     this.$store.dispatch("setLoading", true);
     axios
-      .get("http://localhost:3000/user/data", {
+      .get("/user/data", {
         headers: {
           Authorization: `Bearer ${this.$store.state.token}`,
         },

@@ -52,8 +52,8 @@
     <div class="container" v-if="this.cart != []">
     <h1>Cart</h1>
       <div class="cartBox">
-        <template v-for="(product, index) in this.cart">
-          <div class="cartProduct" :key="index">
+        <template v-for="product in this.cart" >
+          <div class="cartProduct" :key="product._id">
             <p>{{ product.name }}</p>
             <div class="line"></div>
             <p>{{ product.quantity }}</p>
@@ -93,7 +93,7 @@ export default {
   },
   mounted() {
     axios
-      .get("http://localhost:3000/user/cart/data", {
+      .get("/user/cart/data", {
         headers: {
           Authorization: `Bearer ${this.$store.state.token}`,
         },
@@ -115,7 +115,7 @@ export default {
       console.log(product);
       axios
         .post(
-          "http://localhost:3000/user/cart/remove",
+          "/user/cart/remove",
           {
             itemName: product,
           },

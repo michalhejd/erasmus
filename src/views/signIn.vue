@@ -115,7 +115,7 @@ export default {
     async login() {
       this.$store.dispatch("setLoading", true);
       await axios
-        .post("http://localhost:3000/login", {
+        .post("/login", {
           username: this.username,
           password: this.password,
         })
