@@ -115,7 +115,7 @@ export default {
     async login() {
       this.$store.dispatch("setLoading", true);
       await axios
-        .post("/login", {
+        .post("https://erasmustartup.eu/login", {
           username: this.username,
           password: this.password,
         })

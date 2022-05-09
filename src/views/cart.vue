@@ -115,7 +115,7 @@ export default {
       console.log(product);
       axios
         .post(
-          "/user/cart/remove",
+          "https://erasmustartup.eu/user/cart/remove",
           {
             itemName: product,
           },

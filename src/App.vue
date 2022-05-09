@@ -45,7 +45,7 @@ export default {
   mounted() {
     this.$store.dispatch("getProducts");
     axios
-      .get("/kafka", {
+      .get("https://erasmustartup.eu/kafka", {
         headers: {
           Authorization: "Bearer " + this.$store.state.token,
         },

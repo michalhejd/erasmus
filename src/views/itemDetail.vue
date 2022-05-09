@@ -94,7 +94,7 @@ export default {
       console.log(this.$store.state.token);
       console.log(this.$store.state.product.name);
       axios.post(
-        "/user/cart/add",
+        "https://erasmustartup.eu/user/cart/add",
         { itemName: this.$store.state.product.name },
         { headers: { Authorization: `Bearer ${this.$store.state.token}` } }
       );
