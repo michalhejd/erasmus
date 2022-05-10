@@ -12,13 +12,25 @@
         font-size: 1rem;
         padding-bottom: 5%;
       }
+      .account-center {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        h2 {
+          margin-top: 30px;
+        }
+      }
+      p {
+        padding: 5%;
+      }
       .account-parametr-stats {
         margin-bottom: 30px;
       }
       display: flex;
       flex-direction: column;
-      background-color: rgb(237, 237, 237);
-      border-radius: 10px;
+      background-color: #FBFBFB;
+      border-radius: 50px;
       margin-top: 3%;
       width: 30%;
       padding: 50px;
@@ -27,8 +39,10 @@
         flex-direction: column;
         button {
           margin-top: 30px;
-          background-color: transparent;
+          background-color: white;
+          padding: 10px;
           border: none;
+          border-radius: 50px;
           cursor: pointer;
         }
       }
@@ -55,6 +69,17 @@
           <div>
             <button @click="signOut()">Sign out</button>
           </div>
+          <div v-if="this.user.ownedItems !== []">
+            <div class="account-center">
+              <h2>Owned Items</h2>
+            </div>
+            <div v-if="this.user.ownedItems != undefined || this.user.ownedItems != '' || this.user.ownedItems != []">
+              <p>Name:</p>
+              <p v-for="item in this.user.ownedItems" :key="item.name">
+                {{ item.name }}
+              </p>
+            </div>
+          </div>
         </div>
       </div>
       <div
@@ -63,7 +88,7 @@
       >
         <p>{{ this.userError }}</p>
       </div>
-      <loader v-else/>
+      <loader v-else />
     </div>
   </div>
 </template>
@@ -75,7 +100,7 @@ export default {
   name: "account",
   components: {
     navigation,
-    loader
+    loader,
   },
   data() {
     return {

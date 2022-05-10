@@ -12,7 +12,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  h1{
+  h1 {
     margin-bottom: 3%;
   }
   .cartBox {
@@ -50,7 +50,7 @@
   <div class="cart">
     <navigation />
     <div class="container" v-if="this.cart != []">
-    <h1>Cart</h1>
+      <h1>Cart</h1>
       <div class="cartBox">
         <template v-for="(product, index) in this.cart">
           <div class="cartProduct" :key="index">
@@ -64,6 +64,7 @@
             </button>
           </div>
         </template>
+        <button @click="purchase()">Purchase</button>
       </div>
     </div>
     <div class="empty" v-else>
@@ -112,7 +113,6 @@ export default {
   methods: {
     removeItem(product) {
       this.$store.dispatch("setLoading", true);
-      console.log(product);
       axios
         .post(
           "http://localhost:3000/user/cart/remove",
@@ -128,6 +128,29 @@ export default {
         .then((response) => {
           if (response.status === 200) {
             this.$store.dispatch("setLoading", false);
+          }
+        })
+        .catch((error) => {
+          this.$store.dispatch("setLoading", false);
+          this.cartError = error.response.data;
+        });
+    },
+    purchase() {
+      this.$store.dispatch("setLoading", true);
+      axios
+        .post(
+          "http://localhost:3000/user/purchase",
+          {},
+          {
+            headers: {
+              Authorization: `Bearer ${this.$store.state.token}`,
+            },
+          }
+        )
+        .then((response) => {
+          if (response.status === 200) {
+            this.$store.dispatch("setLoading", false);
+            this.$store.dispatch("cart", []);
           }
         })
         .catch((error) => {
