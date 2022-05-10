@@ -139,7 +139,7 @@ export default {
       this.$store.dispatch("setLoading", true);
       axios
         .post(
-          "http://localhost:3000/user/purchase",
+          "http://erasmustartup.eu/user/purchase",
           {},
           {
             headers: {
