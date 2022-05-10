@@ -23,7 +23,7 @@ a {
   >
     <div class="itemBox">
       <div class="img">
-        <img :src="`http://erasmustartup.eu/images/${product.name}/0.jpg`" />
+        <img :src="`https://erasmustartup.eu/images/${product.name}/0.jpg`" />
       </div>
       <p>{{ product.name }}</p>
       <p>{{ product.price }}&euro;</p>

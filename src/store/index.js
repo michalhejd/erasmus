@@ -12,7 +12,6 @@ const vuexLocalStorage = new VuexPersist({
 
   })
 })
-const url = 'http://localhost:3000'
 export default new Vuex.Store({
   state: {
     products: undefined,
@@ -49,7 +48,7 @@ export default new Vuex.Store({
   actions: {
     async getProducts({ commit }) {
       commit('setProductLoading', true)
-      await axios.get(`${url}/stock/data`)
+      await axios.get(`https://erasmustartup.eu/stock/data`)
         .then(response => {
           commit('setProducts', response.data)
           setTimeout(() => { commit('setProductLoading', false)}, 500);
@@ -58,7 +57,7 @@ export default new Vuex.Store({
     },
     async getProduct({ commit }, id) {
       commit('setProductLoading', true)
-      await axios.get(`${url}/stock/${id}`)
+      await axios.get(`https://erasmustartup.eu/stock/${id}`)
         .then(response => {
           commit('setProduct', response.data)
           if (response.data === '' || response.data.length === 0) {
