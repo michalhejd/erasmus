@@ -6,6 +6,14 @@
 .shopHere {
   display: flex;
 }
+.notLogged{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .wrap{
+    display: flex;
+  }
+}
 .container {
   display: flex;
   height: 100vh;
@@ -49,30 +57,38 @@
 <template>
   <div class="cart">
     <navigation />
-    <div class="container" v-if="this.cart != []">
-      <h1>Cart</h1>
-      <div class="cartBox">
-        <template v-for="product in this.cart" >
-          <div class="cartProduct" :key="product._id">
-            <p>{{ product.name }}</p>
-            <div class="line"></div>
-            <p>{{ product.quantity }}</p>
-            <div class="line"></div>
-            <p>{{ product.price }}&euro;</p>
-            <button @click="removeItem(product.name)">
-              <font-awesome-icon icon="fa-solid fa-xmark" />
-            </button>
-          </div>
-        </template>
-        <button @click="purchase()">Purchase</button>
+    <div class="logged" v-if="this.$store.state.kafka == true">
+      <div class="container" v-if="this.cart != []">
+        <h1>Cart</h1>
+        <div class="cartBox">
+          <template v-for="product in this.cart">
+            <div class="cartProduct" :key="product._id">
+              <p>{{ product.name }}</p>
+              <div class="line"></div>
+              <p>{{ product.quantity }}</p>
+              <div class="line"></div>
+              <p>{{ product.price }}&euro;</p>
+              <button @click="removeItem(product.name)">
+                <font-awesome-icon icon="fa-solid fa-xmark" />
+              </button>
+            </div>
+          </template>
+          <button @click="purchase()">Purchase</button>
+        </div>
+      </div>
+      <div class="empty" v-else>
+        <p>Your cart is empty!</p>
+        <div class="shopHere">
+          <p>You can shop&nbsp;</p>
+          <router-link to="/products">here</router-link>
+          <p>!</p>
+        </div>
       </div>
     </div>
-    <div class="empty" v-else>
-      <p>Your cart is empty!</p>
-      <div class="shopHere">
-        <p>You can shop&nbsp;</p>
-        <router-link to="/products">here</router-link>
-        <p>!</p>
+    <div class="notLogged" v-else>
+      <p>You need to be signed in to view your cart!</p>
+      <div class="wrap">
+        <p>Sign in&nbsp;</p><router-link to="/signIn">here</router-link><p>!</p>
       </div>
     </div>
   </div>

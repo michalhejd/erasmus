@@ -9,6 +9,8 @@
 .wrap {
   display: flex;
   justify-content: center;
+  width: 150px;
+  height: 50px;
 }
 button {
   width: 150px;

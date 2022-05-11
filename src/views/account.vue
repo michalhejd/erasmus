@@ -10,41 +10,53 @@
     .account-box {
       p {
         font-size: 1rem;
-        padding-bottom: 5%;
+        padding-bottom: 15px;
       }
       .account-center {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        h2 {
-          margin-top: 30px;
-        }
       }
       p {
-        padding: 5%;
+        padding: 15px;
+      }
+      .account-owned {
+        display: flex;
+        justify-content: start;
       }
       .account-parametr-stats {
         margin-bottom: 30px;
       }
       display: flex;
       flex-direction: column;
-      background-color: #FBFBFB;
+      background-color: #fbfbfb;
       border-radius: 50px;
       margin-top: 3%;
       width: 30%;
       padding: 50px;
-      div {
+      .account-out {
         display: flex;
         flex-direction: column;
+        align-items: center;
+        width: 100%;
         button {
-          margin-top: 30px;
-          background-color: white;
+          width: 120px;
+          color: white;
+          background-color: rgb(180, 33, 33);
           padding: 10px;
           border: none;
           border-radius: 50px;
           cursor: pointer;
         }
+      }
+      .line {
+        display: flex;
+        height: 1px;
+        width: 100%;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        background-color: black;
       }
     }
   }
@@ -66,14 +78,22 @@
           <p class="account-parametr-stats">{{ this.user.email }}</p>
           <p>Ballance:</p>
           <p class="account-parametr-stats">{{ this.user.ballance }} $Era</p>
-          <div>
+          <div class="account-out">
             <button @click="signOut()">Sign out</button>
           </div>
+          <div class="line"></div>
           <div v-if="this.user.ownedItems !== []">
             <div class="account-center">
               <h2>Owned Items</h2>
             </div>
-            <div v-if="this.user.ownedItems != undefined || this.user.ownedItems != '' || this.user.ownedItems != []">
+            <div
+              class="account-owned"
+              v-if="
+                this.user.ownedItems != undefined ||
+                this.user.ownedItems != '' ||
+                this.user.ownedItems != []
+              "
+            >
               <p>Name:</p>
               <p v-for="item in this.user.ownedItems" :key="item.name">
                 {{ item.name }}
