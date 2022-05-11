@@ -11,6 +11,8 @@
   justify-content: center;
   width: 150px;
   height: 50px;
+  margin-left: auto;
+  margin-right: auto;
 }
 button {
   width: 150px;

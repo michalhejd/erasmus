@@ -8,24 +8,28 @@
     display: flex;
     justify-content: center;
     align-items: center;
-     font-family: "Raleway", sans;
+    font-family: "Raleway", sans;
+    
+
     form {
-      .input {
-        background-color: #f1f1f1;
-        border-style: none;
-        padding: 1vh;
-        border: 1px solid rgba(0, 0, 0, 0.1);
-        border-radius: 0.5vh;
-        width: 35vh;
-      }
-      .main {
-        padding: 10vh 15vh 10vh 15vh;
-      }
-      border-radius: 6vh;
+      border-radius: 40px;
       display: flex;
       flex-direction: column;
       gap: 10vh;
       background-color: #fbfbfb;
+      padding: 50px;
+      margin: 0 10px;
+      .input {
+        background-color: #f1f1f1;
+        border-style: none;
+        padding: 10px;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 0.5vh;
+        width: 250px;
+      }
+      .main {
+      }
+
       h1 {
         text-align: center;
         margin-bottom: 1.5vh;
@@ -57,6 +61,19 @@
   gap: 10px;
   .account {
     display: flex;
+  }
+}
+@media only screen and (max-width: 450px){
+  .signin .container form{
+    padding: 25px;
+  }
+}
+@media only screen and (max-width: 350px){
+  .signin .container form{
+    border-radius: 20px;
+  }
+  .signin .container form .input{
+    width: 200px;
   }
 }
 </style>

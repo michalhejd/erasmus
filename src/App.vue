@@ -42,9 +42,9 @@ span {
 <script>
 import axios from "axios";
 export default {
-  mounted() {
+  async mounted() {
     this.$store.dispatch("getProducts");
-    axios
+    await axios
       .get("https://erasmustartup.eu/kafka", {
         headers: {
           Authorization: "Bearer " + this.$store.state.token,

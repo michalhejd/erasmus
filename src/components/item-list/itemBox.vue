@@ -1,11 +1,14 @@
 <style lang="scss" scoped>
 .itemBox {
-  width: 250px;
-  height: 300px;
+  max-width: 250px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 2px;
   color: black;
+  border: 1px solid rgb(122, 122, 122);
+  border-radius: 5px;
+  padding: 10px;
   img {
     width: 100%;
     max-width: 150px;

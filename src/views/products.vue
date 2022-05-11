@@ -14,7 +14,23 @@
     padding: 0 50px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    column-gap: 30px;
+    column-gap: 50px;
+    row-gap: 50px;
+}
+@media only screen and (max-width: 1150px) {
+  .container{
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media only screen and (max-width: 650px) {
+  .container{
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media only screen and (max-width: 450px) {
+  .container{
+    grid-template-columns: repeat(1, 1fr);
+  }
 }
 </style>
 <template>
