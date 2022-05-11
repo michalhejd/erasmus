@@ -66,9 +66,10 @@
   <div class="account">
     <navigation />
     <div class="accountwrap">
+    <loader v-if="this.$store.state.loading == true" />
       <div
         class="account-info"
-        v-if="this.userLoading != true && this.user != undefined"
+        v-else-if="this.userLoading != true && this.user != undefined"
       >
         <h1>My Account</h1>
         <div class="account-box">
@@ -104,11 +105,10 @@
       </div>
       <div
         class="error"
-        v-else-if="this.userLoading != true && this.userError != undefined"
+        v-else
       >
         <p>{{ this.userError }}</p>
       </div>
-      <loader v-else />
     </div>
   </div>
 </template>
@@ -136,9 +136,9 @@ export default {
       this.$router.push({ path: "/signIn" });
     },
   },
-  mounted() {
+  async mounted() {
     this.$store.dispatch("setLoading", true);
-    axios
+    await axios
       .get("https://erasmustartup.eu/user/data", {
         headers: {
           Authorization: `Bearer ${this.$store.state.token}`,

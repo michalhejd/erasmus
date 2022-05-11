@@ -42,7 +42,7 @@ span {
 <script>
 import axios from "axios";
 export default {
-  async mounted() {
+  async created() {
     this.$store.dispatch("getProducts");
     await axios
       .get("https://erasmustartup.eu/kafka", {

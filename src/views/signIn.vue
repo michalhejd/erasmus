@@ -80,7 +80,8 @@
 <template>
   <div class="signin">
     <navigation />
-    <div class="container" v-if="kafka != true">
+    <loader v-if="this.$store.state.loader == true"/>
+    <div class="container" v-else-if="kafka != true">
       <form v-on:submit.prevent="login">
         <div class="main">
           <h1>Sign in</h1>
@@ -110,10 +111,12 @@
 <script>
 import navigation from "@/components/navigation.vue";
 import axios from "axios";
+import loader from "@/components/loader.vue";
 export default {
   name: "signin",
   components: {
     navigation,
+    loader
   },
   data() {
     return {

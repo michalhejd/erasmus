@@ -59,7 +59,8 @@
   <div class="cart">
     <navigation />
     <div class="logged" v-if="this.$store.state.kafka == true">
-      <div class="container" v-if="this.cart != []">
+    <loader v-if="this.$store.state.loader == true"/>
+      <div class="container" v-else-if="this.cart != [] || this.cart != '' || this.cart != undefined || this.cart != null">
         <h1>Cart</h1>
         <div class="cartBox">
           <template v-for="product in this.cart">
@@ -97,10 +98,12 @@
 <script>
 import axios from "axios";
 import navigation from "@/components/navigation.vue";
+import loader from "@/components/loader.vue"
 export default {
   name: "cart",
   components: {
     navigation,
+    loader
   },
   data() {
     return {
@@ -109,8 +112,8 @@ export default {
       cartError: undefined,
     };
   },
-  mounted() {
-    axios
+  async mounted() {
+    await axios
       .get("/user/cart/data", {
         headers: {
           Authorization: `Bearer ${this.$store.state.token}`,
@@ -128,9 +131,9 @@ export default {
       });
   },
   methods: {
-    removeItem(product) {
+    async removeItem(product) {
       this.$store.dispatch("setLoading", true);
-      axios
+      await axios
         .post(
           "https://erasmustartup.eu/user/cart/remove",
           {
