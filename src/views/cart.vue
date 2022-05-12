@@ -6,12 +6,12 @@
 .shopHere {
   display: flex;
 }
-.notLogged{
+.notLogged {
   display: flex;
   flex-direction: column;
   text-align: center;
   align-items: center;
-  .wrap{
+  .wrap {
     display: flex;
   }
 }
@@ -59,8 +59,17 @@
   <div class="cart">
     <navigation />
     <div class="logged" v-if="this.$store.state.kafka == true">
-    <loader v-if="this.$store.state.loader == true"/>
-      <div class="container" v-else-if="this.cart != [] || this.cart != '' || this.cart != undefined || this.cart != null">
+      <loader v-if="this.cartLoading ==true" />
+      <div
+        class="container"
+        v-else-if="
+          this.cart != [] ||
+          this.cart != '' ||
+          this.cart != undefined ||
+          this.cart != null ||
+          this.cart.length != 0
+        "
+      >
         <h1>Cart</h1>
         <div class="cartBox">
           <template v-for="product in this.cart">
@@ -90,7 +99,9 @@
     <div class="notLogged" v-else>
       <p>You need to be signed in to view your cart!</p>
       <div class="wrap">
-        <p>Sign in&nbsp;</p><router-link to="/signIn">here</router-link><p>!</p>
+        <p>Sign in&nbsp;</p>
+        <router-link to="/signIn">here</router-link>
+        <p>!</p>
       </div>
     </div>
   </div>
@@ -98,12 +109,12 @@
 <script>
 import axios from "axios";
 import navigation from "@/components/navigation.vue";
-import loader from "@/components/loader.vue"
+import loader from "@/components/loader.vue";
 export default {
   name: "cart",
   components: {
     navigation,
-    loader
+    loader,
   },
   data() {
     return {
@@ -113,26 +124,34 @@ export default {
     };
   },
   async mounted() {
+    this.cartLoading = true;
     await axios
-      .get("/user/cart/data", {
+      .get("https://erasmustartup.eu/user/cart/data", {
         headers: {
           Authorization: `Bearer ${this.$store.state.token}`,
         },
       })
       .then((response) => {
+        this.cartLoading = false;
         if (response.status === 200) {
+          this.cartLoading = false;
+          this.cart = undefined;
+          this.cartLoading = false;
           this.cart = response.data;
           this.cartLoading = false;
           console.log(this.cart);
+          this.cartLoading = false;
+          console.log(this.cartLoading)
         }
       })
       .catch((error) => {
         this.cartError = error.response.data;
+        this.cartLoading = false;
       });
   },
   methods: {
     async removeItem(product) {
-      this.$store.dispatch("setLoading", true);
+      this.cartLoading = true;
       await axios
         .post(
           "https://erasmustartup.eu/user/cart/remove",
@@ -145,21 +164,39 @@ export default {
             },
           }
         )
-        .then((response) => {
+        .then(async (response) => {
           if (response.status === 200) {
-            this.$store.dispatch("setLoading", false);
+            this.$store.dispatch("setLoading", true);
+            await axios
+              .get("https://erasmustartup.eu/user/cart/data", {
+                headers: {
+                  Authorization: `Bearer ${this.$store.state.token}`,
+                },
+              })
+              .then((response) => {
+                if (response.status === 200) {
+                  this.cart = undefined;
+                  this.cart = response.data;
+                  this.cartLoading = false;
+                  console.log(this.cart);
+                }
+              })
+              .catch((error) => {
+                this.cartError = error.response.data;
+                this.cartLoading = false;
+              });
           }
         })
         .catch((error) => {
-          this.$store.dispatch("setLoading", false);
           this.cartError = error.response.data;
+          this.cartLoading = false;
         });
     },
     purchase() {
       this.$store.dispatch("setLoading", true);
       axios
         .post(
-          "http://erasmustartup.eu/user/purchase",
+          "https://erasmustartup.eu/user/purchase",
           {},
           {
             headers: {
