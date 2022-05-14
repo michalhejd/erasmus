@@ -151,8 +151,14 @@ export default {
 
           console.log(response.data);
         }
+        else{
+this.$store.commit("setKafka", false);
+          this.$store.commit("setToken", undefined);
+        }
       })
       .catch((error) => {
+        this.$store.commit("setKafka", false);
+          this.$store.commit("setToken", undefined);
         this.userError = error.response.data;
         this.$store.dispatch("setLoading", false);
       });

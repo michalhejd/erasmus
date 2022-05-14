@@ -58,7 +58,7 @@
 <template>
   <div class="cart">
     <navigation />
-    <div class="logged" v-if="this.$store.state.kafka == true">
+    <div class="logged" v-if="this.cartError == undefined">
       <loader v-if="this.cartLoading ==true" />
       <div
         class="container"
@@ -67,7 +67,8 @@
           this.cart != '' ||
           this.cart != undefined ||
           this.cart != null ||
-          this.cart.length != 0
+          this.cart.length != 0 ||
+          this.cart != {}
         "
       >
         <h1>Cart</h1>
@@ -134,17 +135,14 @@ export default {
       .then((response) => {
         this.cartLoading = false;
         if (response.status === 200) {
-          this.cartLoading = false;
-          this.cart = undefined;
-          this.cartLoading = false;
-          this.cart = response.data;
-          this.cartLoading = false;
-          console.log(this.cart);
-          this.cartLoading = false;
-          console.log(this.cartLoading)
+          if(response.data.length === 0){
+            this.cart = undefined;
+        }
         }
       })
       .catch((error) => {
+        this.$store.commit("setKafka", false);
+          this.$store.commit("setToken", undefined);
         this.cartError = error.response.data;
         this.cartLoading = false;
       });
@@ -179,15 +177,20 @@ export default {
                   this.cart = response.data;
                   this.cartLoading = false;
                   console.log(this.cart);
+
                 }
               })
               .catch((error) => {
+                this.$store.commit("setKafka", false);
+          this.$store.commit("setToken", undefined);
                 this.cartError = error.response.data;
                 this.cartLoading = false;
               });
           }
         })
         .catch((error) => {
+          this.$store.commit("setKafka", false);
+          this.$store.commit("setToken", undefined);
           this.cartError = error.response.data;
           this.cartLoading = false;
         });
@@ -211,6 +214,8 @@ export default {
           }
         })
         .catch((error) => {
+          this.$store.commit("setKafka", false);
+          this.$store.commit("setToken", undefined);
           this.$store.dispatch("setLoading", false);
           this.cartError = error.response.data;
         });

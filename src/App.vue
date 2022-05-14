@@ -40,30 +40,6 @@ span {
   </div>
 </template>
 <script>
-import axios from "axios";
 export default {
-  async created() {
-    this.$store.dispatch("getProducts");
-    await axios
-      .get("https://erasmustartup.eu/kafka", {
-        headers: {
-          Authorization: "Bearer " + this.$store.state.token,
-        },
-      })
-      .then((response) => {
-        if (response.status === 200) {
-          this.$store.dispatch("setKafka", true);
-        } else {
-          this.$store.dispatch("setKafka", false);
-          this.$store.dispatch("setToken", undefined);
-        }
-        this.$store.dispatch("setLoading", false);
-      })
-      .catch((error) => {
-        this.$store.dispatch("setKafka", false);
-        this.$store.dispatch("setToken", undefined);
-        this.$store.dispatch("setLoading", false);
-      });
-  },
 };
 </script>
