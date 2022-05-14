@@ -6,29 +6,29 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  h2{
-      font-weight: 600;
+  h2 {
+    font-weight: 600;
   }
 }
-.container{
-    padding: 0 50px;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    column-gap: 50px;
-    row-gap: 50px;
+.container {
+  padding: 0 50px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: 50px;
+  row-gap: 50px;
 }
 @media only screen and (max-width: 1150px) {
-  .container{
+  .container {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 @media only screen and (max-width: 650px) {
-  .container{
+  .container {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 @media only screen and (max-width: 450px) {
-  .container{
+  .container {
     grid-template-columns: repeat(1, 1fr);
   }
 }
@@ -40,13 +40,12 @@
       <h2>Musical Instruments</h2>
       <p>European students</p>
     </div>
-     <div class="container" v-if="products && loading != true">
-    <template v-for="(product, index) in products">
- <itemBox :key="product._id" :index="index" :product="product"/>
-    </template>
+    <div class="container" v-if="products && loading != true">
+      <template v-for="(product, index) in products">
+        <itemBox :key="product._id" :index="index" :product="product" />
+      </template>
     </div>
-      <loader v-else/>
-   
+    <loader v-else />
   </div>
 </template>
 <script>
@@ -61,12 +60,12 @@ export default {
     loader,
   },
   computed: {
-      products(){
-            return this.$store.state.products;
-      },
-      loading(){
-            return this.$store.state.loading;
-      }
-  }
+    products() {
+      return this.$store.state.products;
+    },
+    loading() {
+      return this.$store.state.loading;
+    },
+  },
 };
 </script>
