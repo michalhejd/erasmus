@@ -31,6 +31,7 @@
     color: black;
   }
 }
+
 </style>
 <template>
   <div class="navigation">

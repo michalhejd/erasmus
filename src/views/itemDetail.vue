@@ -51,7 +51,7 @@
     <div class="container" v-if="product && loading != true">
       <div class="product">
         <img
-          src="https://d1aeri3ty3izns.cloudfront.net/media/23/235459/600/preview_4.jpg"
+          :src="`${image}`"
           alt=""
         />
       </div>
@@ -94,7 +94,7 @@ export default {
       console.log(this.$store.state.token);
       console.log(this.$store.state.product.name);
       await axios.post(
-        "https://erasmustartup.eu/user/cart/add",
+        "/user/cart/add",
         { itemName: this.$store.state.product.name },
         { headers: { Authorization: `Bearer ${this.$store.state.token}` } }
       );

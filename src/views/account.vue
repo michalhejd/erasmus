@@ -23,7 +23,7 @@
       }
       .account-owned {
         display: flex;
-        justify-content: start;
+        justify-content: flex-start;
       }
       .account-parametr-stats {
         margin-bottom: 30px;
@@ -32,7 +32,7 @@
       flex-direction: column;
       background-color: #fbfbfb;
       border-radius: 50px;
-      margin-top: 3%;
+      margin-top: 3px;
       width: 30%;
       padding: 50px;
       .account-out {
@@ -139,7 +139,7 @@ export default {
   async mounted() {
     this.$store.dispatch("setLoading", true);
     await axios
-      .get("https://erasmustartup.eu/user/data", {
+      .get("/user", {
         headers: {
           Authorization: `Bearer ${this.$store.state.token}`,
         },

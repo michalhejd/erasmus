@@ -48,7 +48,7 @@ export default new Vuex.Store({
   actions: {
     async getProducts({ commit }) {
       commit('setProductLoading', true)
-      await axios.get(`https://erasmustartup.eu/stock/data`)
+      await axios.get(`/stock/data`)
         .then(response => {
           commit('setProducts', response.data)
           setTimeout(() => { commit('setProductLoading', false)}, 500);
@@ -57,7 +57,8 @@ export default new Vuex.Store({
     },
     async getProduct({ commit }, id) {
       commit('setProductLoading', true)
-      await axios.get(`https://erasmustartup.eu/stock/${id}`)
+      commit('setProduct', undefined)
+      await axios.get(`/stock/${id}`)
         .then(response => {
           commit('setProduct', response.data)
           if (response.data === '' || response.data.length === 0) {
